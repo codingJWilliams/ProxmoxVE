@@ -197,6 +197,7 @@ class Proxmox
             'form_params' => [
                 'username' => $this->credentials->getUsername(),
                 'password' => $this->credentials->getPassword(),
+                'otp' => $this->credentials->getOtp(),
                 'realm' => $this->credentials->getRealm(),
             ],
         ]);

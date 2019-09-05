@@ -35,6 +35,11 @@ class Credentials
     private $password;
 
     /**
+     * @var string The one time password used to authenticate with Proxmox.
+     */
+    private $otp;
+
+    /**
      * @var string The authentication realm (defaults to "pam" if not provided).
      */
     private $realm;
@@ -63,6 +68,7 @@ class Credentials
         $this->hostname = $credentials['hostname'];
         $this->username = $credentials['username'];
         $this->password = $credentials['password'];
+        $this->otp = $credentials['otp'];
         $this->realm = $credentials['realm'];
         $this->port = $credentials['port'];
     }
@@ -126,6 +132,16 @@ class Credentials
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Gets the one time password set in this credentials object.
+     *
+     * @return string The password in the credentials.
+     */
+    public function getOtp()
+    {
+        return $this->otp;
     }
 
 
@@ -210,6 +226,7 @@ class Credentials
                 'hostname' => $credentials->hostname,
                 'username' => $credentials->username,
                 'password' => $credentials->password,
+                'otp' => $credentials->otp,
                 'realm' => $realm,
                 'port' => $port,
             ];
@@ -235,6 +252,7 @@ class Credentials
                 'hostname' => $credentials->getHostname(),
                 'username' => $credentials->getUsername(),
                 'password' => $credentials->getPassword(),
+                'otp' => $credentials->getOtp(),
                 'realm' => $realm,
                 'port' => $port,
             ];
@@ -251,6 +269,7 @@ class Credentials
                     'hostname' => $credentials->hostname,
                     'username' => $credentials->username,
                     'password' => $credentials->password,
+                    'otp' => $credentials->otp,
                     'realm' => $credentials->realm ?: 'pam',
                     'port' => $credentials->port ?: '8006',
                 ];
